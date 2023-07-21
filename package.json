@@ -4,7 +4,8 @@
   "author": "ericsen.tsai",
   "description": "Node.js & TypeScript starter",
   "engines": {
-    "node": ">=18.11"
+    "node": ">=18.11",
+    "pnpm": ">=7.25"
   },
   "scripts": {
     "dev": "pnpm /dev:.*/",
