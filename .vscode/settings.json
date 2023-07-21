@@ -6,13 +6,13 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "rome.rome"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   // #endregion
   // #region Debugger
