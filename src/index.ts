@@ -23,25 +23,25 @@ type IGResponse = {
   }
 }
 
-const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
-  const url = new URL(postUrl)
-  const res = await fetch(
-    url.origin + url.pathname + '?' + process.env.SECRET_QUERY_STRING,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  )
-  const data = (await res.json()) as IGResponse
-  return {
-    urls:
-      data?.graphql?.shortcode_media.display_resources.map(
-        (resource) => resource.src
-      ) || [],
-    raw: data,
-  }
-}
+// const getIGPostImgSRCs = async ({ postUrl }: { postUrl: string }) => {
+//   const url = new URL(postUrl)
+//   const res = await fetch(
+//     url.origin + url.pathname + '?' + process.env.SECRET_QUERY_STRING,
+//     {
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     }
+//   )
+//   const data = (await res.json()) as IGResponse
+//   return {
+//     urls:
+//       data?.graphql?.shortcode_media.display_resources.map(
+//         (resource) => resource.src
+//       ) || [],
+//     raw: data,
+//   }
+// }
 
 // Handle GET requests to the root URL
 router.get('/post', async (req, res) => {
@@ -49,8 +49,11 @@ router.get('/post', async (req, res) => {
   if (!postUrl) {
     res.status(400).send('No URL specified')
   }
-  const imgUrls = await getIGPostImgSRCs({ postUrl })
-  res.send({ imgUrls })
+  // const imgUrls = await getIGPostImgSRCs({ postUrl })
+  const url = new URL(postUrl)
+  const imgUrls = await fetch(url.origin + url.pathname + 'media?size=l')
+  const data = imgUrls.blob()
+  res.send(data)
 })
 
 app.use(router)
